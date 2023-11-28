@@ -41,16 +41,16 @@ class JugadorPage extends StatelessWidget {
                 return TextFormField(
                   controller: fx.ctrBirthdate.value,
                   onTap: () {
-                    _selectDate(context,
-                        fx); // Función para mostrar el selector de fecha
+                    _selectDate(context, fx);
+                    FocusScope.of(context).requestFocus(FocusNode());
                   },
                   decoration: InputDecoration(
                     labelText: 'Fecha de nacimiento',
                     errorText: fx.errorBirthdate.value,
                     suffixIcon: IconButton(
                       onPressed: () {
-                        _selectDate(context,
-                            fx); // Función para mostrar el selector de fecha
+                        _selectDate(context, fx);
+                        FocusScope.of(context).requestFocus(FocusNode());
                       },
                       icon: const Icon(Icons.calendar_today),
                     ),
@@ -93,7 +93,8 @@ class JugadorPage extends StatelessWidget {
               }),
               Obx(() {
                 return ElevatedButton.icon(
-                    onPressed: fx.submitFunc.value,
+                    onPressed:
+                        fx.isButtonEnabledRx.value ? fx.submitFunc.value : null,
                     icon: const Icon(Icons.save),
                     label: const Text('Guardar'));
               })
@@ -109,14 +110,15 @@ class JugadorPage extends StatelessWidget {
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: controller.playerBirthdate.value,
-      firstDate: DateTime(1900),
+      firstDate: DateTime(1950),
       lastDate: DateTime(2005),
-      // Puedes modificar los valores de initialDate, firstDate y lastDate según tus requerimientos
     );
 
     if (picked != null && picked != controller.playerBirthdate.value) {
-      controller.birthdateChanged(
-          picked); // Actualiza la fecha seleccionada en el controlador
+      controller.birthdateChanged(picked);
+      final formattedDate =
+          '${picked.day.toString().padLeft(2, '0')}/${picked.month.toString().padLeft(2, '0')}/${picked.year.toString()}';
+      controller.ctrBirthdate.value.text = formattedDate;
     }
   }
 }

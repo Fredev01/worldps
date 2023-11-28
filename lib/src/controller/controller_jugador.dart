@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:worldps/src/controller/controller_list_jugador.dart';
 import 'package:worldps/src/models/jugador_modelo.dart';
 import 'package:worldps/src/service/jugador_service.dart';
 
@@ -11,16 +12,15 @@ class ControllerPlayer extends GetxController {
   var playerEmail = ''.obs;
   var playerStatus = true.obs;
   var playerLastTeam = ''.obs;
-  Rx<DateTime> playerBirthdate = Rx<DateTime>(DateTime.now());
+  Rx<DateTime> playerBirthdate = Rx<DateTime>(DateTime(2005));
   bool fName = false;
-  bool fBirthdate = false;
+  //bool fBirthdate = false;
   bool fNationality = false;
   bool fEmail = false;
   bool fLastTeam = false;
-
   RxnString errorName = RxnString(null);
   RxnString errorBirthdate = RxnString(null);
-
+  RxBool isButtonEnabledRx = false.obs;
   RxnString errorNationality = RxnString(null);
   RxnString errorEmail = RxnString(null);
   RxnString errorLastTeam = RxnString(null);
@@ -28,7 +28,7 @@ class ControllerPlayer extends GetxController {
   Rxn<Function()> submitFunc = Rxn<Function()>(null);
 
   PlayersService? service;
-  ControllerPlayer ctrlst = Get.find();
+  //ControllerListJugador ctrlst = Get.find();
   var ctrName = TextEditingController().obs;
   var ctrBirthdate = TextEditingController().obs;
   var ctrNationality = TextEditingController().obs;
@@ -55,49 +55,33 @@ class ControllerPlayer extends GetxController {
   void onInit() {
     super.onInit();
     service = PlayersService();
-    debounce<String>(playerName, (callback) => null);
+    debounce<String>(playerName, validarName,
+        time: const Duration(microseconds: 500));
+    debounce<String>(playerNationality, validarNationality,
+        time: const Duration(microseconds: 500));
+    debounce<String>(playerEmail, validarEmail,
+        time: const Duration(microseconds: 500));
+    debounce<String>(playerLastTeam, validarLastTeam,
+        time: const Duration(microseconds: 500));
   }
 
   void validarName(String val) {
     errorName.value = null;
     submitFunc.value = null;
-    // Verificar que la longitud sea mayor a 15 caracteres
-    if (val.length > 15) {
-      // Verificar si contiene números usando expresiones regulares
-      if (!RegExp(r'[0-9]').hasMatch(val)) {
-        // El nombre no contiene números y tiene la longitud correcta
-        submitFunc.value = submitFunction();
-        fName = true;
-        errorName.value = null;
-      } else {
-        // El nombre contiene al menos un número
-        errorName.value = 'El nombre no puede contener números';
-        fName = false;
-      }
-    } else {
-      // El nombre es demasiado corto
-      errorName.value = 'El nombre debe ser mayor 15 caracteres';
+    if (val.length <= 15) {
+      errorName.value = 'El nombre debe tener al menos 15 caracteres';
       fName = false;
-    }
-  }
-
-  void validarBirthdate(DateTime val) {
-    errorBirthdate.value = null;
-    submitFunc.value = null;
-
-    // Obtener la fecha actual
-    final currentDate = DateTime.now();
-
-    // Verificar si la fecha seleccionada es mayor que la fecha actual
-    if (val.isAfter(currentDate)) {
-      errorBirthdate.value = 'La fecha de nacimiento no puede ser en el futuro';
-      fBirthdate = false;
+    } else if (RegExp(r'[0-9]').hasMatch(val)) {
+      errorName.value = 'El nombre no puede contener números';
+      fName = false;
     } else {
-      // Validación exitosa
+      // Si pasa ambas validaciones, establecer fName en true y errorName en null
+      fName = true;
+      errorName.value = null;
       submitFunc.value = submitFunction();
-      fBirthdate = true;
-      errorBirthdate.value = null;
+      print(submitFunc.value);
     }
+    updateButtonState();
   }
 
   void validarNationality(String val) {
@@ -121,6 +105,7 @@ class ControllerPlayer extends GetxController {
       errorNationality.value = 'El nombre debe ser mayor 4 caracteres';
       fNationality = false;
     }
+    updateButtonState();
   }
 
   void validarEmail(String val) {
@@ -144,6 +129,7 @@ class ControllerPlayer extends GetxController {
       errorEmail.value = 'El email debe ser mayor 7 caracteres';
       fEmail = false;
     }
+    updateButtonState();
   }
 
   void validarLastTeam(String val) {
@@ -156,9 +142,10 @@ class ControllerPlayer extends GetxController {
       errorLastTeam.value = null;
     } else {
       // El nombre es demasiado corto
-      errorName.value = 'El nombre debe ser mayor 2 caracteres';
-      fName = false;
+      errorLastTeam.value = 'El nombre debe ser mayor 2 caracteres';
+      fLastTeam = false;
     }
+    updateButtonState();
   }
 
   void nameChanged(String val) {
@@ -186,38 +173,38 @@ class ControllerPlayer extends GetxController {
     playerLastTeam.value = val;
   }
 
+  void updateButtonState() {
+    isButtonEnabledRx.value = fName && fNationality && fEmail && fLastTeam;
+  }
+
   Future<bool> Function() submitFunction() {
     return () async {
-      if (!fName || !fBirthdate || !fNationality || !fEmail || !fLastTeam) {
-        submitFunc.value = null;
-        validarName(playerName.value);
-        validarBirthdate(playerBirthdate.value);
-        validarNationality(playerNationality.value);
-        validarEmail(playerEmail.value);
-        validarLastTeam(playerLastTeam.value);
-        return true;
-      } else {
+      bool isValid = fName && fNationality && fEmail && fLastTeam;
+
+      if (isValid) {
         String? mensaje = 'Se agregó un nuevo jugador';
         if (_id == '') {
           JugadorModelo jugador = JugadorModelo(
-              nombre: playerName.value,
-              fechaNacimiento: playerBirthdate.value,
-              nacionalidad: playerNationality.value,
-              email: playerEmail.value,
-              status: playerStatus.value,
-              ultimoEquipo: playerLastTeam.value);
-          _id = await ctrlst.agregar(jugador);
+            nombre: playerName.value,
+            fechaNacimiento: playerBirthdate.value,
+            nacionalidad: playerNationality.value,
+            email: playerEmail.value,
+            status: playerStatus.value,
+            ultimoEquipo: playerLastTeam.value,
+          );
+          service?.createPlayer(jugador);
+          // _id = await ctrlst.agregar(jugador);
         } else {
           JugadorModelo jugador = JugadorModelo(
-              id: _id,
-              nombre: playerName.value,
-              fechaNacimiento: playerBirthdate.value,
-              nacionalidad: playerNationality.value,
-              email: playerEmail.value,
-              status: playerStatus.value,
-              ultimoEquipo: playerLastTeam.value);
-          //service?.createProduct(producto);
-          ctrlst.actualizar(jugador);
+            id: _id,
+            nombre: playerName.value,
+            fechaNacimiento: playerBirthdate.value,
+            nacionalidad: playerNationality.value,
+            email: playerEmail.value,
+            status: playerStatus.value,
+            ultimoEquipo: playerLastTeam.value,
+          );
+          //ctrlst.actualizar(jugador);
           mensaje = 'Se actualizó el jugador';
           Get.offNamed('/listaJugador');
         }
@@ -233,7 +220,16 @@ class ControllerPlayer extends GetxController {
               backgroundColor: const Color.fromARGB(0, 6, 218, 137));
         }
         return true;
+      } else {
+        submitFunc.value = null;
+        validarName(playerName.value);
+        validarNationality(playerNationality.value);
+        validarEmail(playerEmail.value);
+        validarLastTeam(playerLastTeam.value);
+        //return false;
       }
+      updateButtonState(); // Llama a esta función después de validar los campos
+      return isValid;
     };
   }
 }
