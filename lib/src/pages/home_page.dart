@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:worldps/scr/custom_widget/drawer_item.dart';
+import 'package:worldps/src/custom_widget/drawer_item.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

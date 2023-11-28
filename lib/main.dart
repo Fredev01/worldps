@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:worldps/scr/pages/estadio_lista_page.dart';
-import 'package:worldps/scr/pages/estadio_page.dart';
-import 'package:worldps/scr/pages/home_page.dart';
+import 'package:worldps/src/pages/estadio_lista_page.dart';
+import 'package:worldps/src/pages/estadio_page.dart';
+import 'package:worldps/src/pages/home_page.dart';
 
 void main() {
   runApp(const MyApp());
