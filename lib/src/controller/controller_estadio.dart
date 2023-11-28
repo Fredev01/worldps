@@ -16,7 +16,7 @@ class ControllerEstadio extends GetxController {
   var estadioCapacity = ''.obs;
   var estadioStatus = true.obs;
 
-  Rxn<DateTime()> stadiumDate= Rxn<DateTime()>(null);
+  Rx<DateTime> stadiumDate= Rx<DateTime>(DateTime(1980));
 
   bool fName = false;
   bool fDate = false;
@@ -62,9 +62,14 @@ class ControllerEstadio extends GetxController {
   @override
   void onInit() {
     super.onInit();
+
     service = StadiumsService();
 
     debounce<String>(estadioName, validarName,
+        time: const Duration(microseconds: 500));
+     debounce<String>(estadioPlace, validarPlace,
+        time: const Duration(microseconds: 500));
+         debounce<String>(estadioOwner, validarOwner,
         time: const Duration(microseconds: 500));
     debounce<String>(estadioCapacity, validarCapacity,
         time: const Duration(microseconds: 500));
