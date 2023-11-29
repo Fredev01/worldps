@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// import 'package:worldps/scr/custom_widget/drawer_item.dart';
 
 class EstadioPage extends StatefulWidget {
   const EstadioPage({Key? key}) : super(key: key);
@@ -14,8 +15,8 @@ class _EstadioPageState extends State<EstadioPage> {
     DateTime? pickedDate = await showDatePicker(
       context: context,
       initialDate: _selectedDate ?? DateTime.now(),
-      firstDate: DateTime(1800),
-      lastDate: DateTime(2023),
+      firstDate: DateTime(1854),
+      lastDate: DateTime.now(),
     );
 
     if (pickedDate != null && pickedDate != _selectedDate) {
@@ -36,12 +37,14 @@ class _EstadioPageState extends State<EstadioPage> {
           padding: const EdgeInsets.all(10),
           child: Column(
             children: [
+              const SizedBox(height: 10),
               TextFormField(
                 onChanged: null,
                 decoration: const InputDecoration(
                   labelText: 'Nombre del estadio',
                 ),
               ),
+              const SizedBox(height: 10),
               TextFormField(
                 onChanged: null,
                 onTap: () => _selectDate(context),
@@ -63,18 +66,21 @@ class _EstadioPageState extends State<EstadioPage> {
                   ),
                 ),
               ),
+              const SizedBox(height: 10),
               TextFormField(
                 onChanged: null,
                 decoration: const InputDecoration(
                   labelText: 'Ubicación',
                 ),
               ),
+              const SizedBox(height: 10),
               TextFormField(
                 onChanged: null,
                 decoration: const InputDecoration(
                   labelText: 'Dueño',
                 ),
               ),
+              const SizedBox(height: 10),
               TextFormField(
                 keyboardType: TextInputType.number,
                 onChanged: null,
@@ -82,10 +88,12 @@ class _EstadioPageState extends State<EstadioPage> {
                   labelText: 'Capacidad del estadio',
                 ),
               ),
+              const SizedBox(height: 10),
               SwitchListTile(
                   value: true,
                   title: const Text('Activo/En mantenimiento'),
                   onChanged: (value) => print('Cambio de valor')),
+              const SizedBox(height: 10),
               ElevatedButton.icon(
                   onPressed: () {},
                   icon: const Icon(Icons.save),
