@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:worldps/scr/pages/estadio_page.dart';
+import 'package:worldps/src/pages/estadio_page.dart';
 
 class BNavigator extends StatelessWidget {
   const BNavigator({Key? key}) : super(key: key);
@@ -16,7 +16,7 @@ class BNavigator extends StatelessWidget {
       onTap: (index) {
         switch (index) {
           case 0:
-            Get.toNamed('/home');
+            Get.toNamed('/Jugadores');
             break;
           case 1:
             Get.toNamed('/listaEstadio');
