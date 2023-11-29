@@ -11,6 +11,7 @@ class HomePage extends StatelessWidget {
         title: const Text("Estadios de Futbol"),
       ),
       bottomNavigationBar: const BNavigator(),
+      floatingActionButton: const AddEstadio(),
     );
   }
 }
