@@ -11,7 +11,7 @@ class JugadorModelo {
 
   String? id; //el simbolo ? indica que puede ser null el valor
   String nombre;
-  DateTime fechaNacimiento;
+  String fechaNacimiento;
   String nacionalidad;
   String email;
   bool status;
@@ -20,7 +20,7 @@ class JugadorModelo {
   factory JugadorModelo.fromJson(Map<String, dynamic> json) => JugadorModelo(
         id: json["id"],
         nombre: json["nombre"],
-        fechaNacimiento: DateTime.parse(json["fechaNacimiento"]),
+        fechaNacimiento: json["fechaNacimiento"],
         nacionalidad: json["nacionalidad"],
         email: json["email"],
         status: json["status"],
@@ -29,7 +29,7 @@ class JugadorModelo {
 
   Map<String, dynamic> toJson() => {
         "nombre": nombre,
-        "fechaNacimiento": fechaNacimiento.toIso8601String(),
+        "fechaNacimiento": fechaNacimiento,
         "nacionalidad": nacionalidad,
         "email": email,
         "status": status,

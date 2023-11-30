@@ -183,10 +183,12 @@ class ControllerPlayer extends GetxController {
 
       if (isValid) {
         String? mensaje = 'Se agregó un nuevo jugador';
+        String formattedDate =
+            '${playerBirthdate.value.day.toString().padLeft(2, '0')}/${playerBirthdate.value.month.toString().padLeft(2, '0')}/${playerBirthdate.value.year.toString()}';
         if (_id == '') {
           JugadorModelo jugador = JugadorModelo(
             nombre: playerName.value,
-            fechaNacimiento: playerBirthdate.value,
+            fechaNacimiento: formattedDate,
             nacionalidad: playerNationality.value,
             email: playerEmail.value,
             status: playerStatus.value,
@@ -198,7 +200,7 @@ class ControllerPlayer extends GetxController {
           JugadorModelo jugador = JugadorModelo(
             id: _id,
             nombre: playerName.value,
-            fechaNacimiento: playerBirthdate.value,
+            fechaNacimiento: formattedDate,
             nacionalidad: playerNationality.value,
             email: playerEmail.value,
             status: playerStatus.value,
