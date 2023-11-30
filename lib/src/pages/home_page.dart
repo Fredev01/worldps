@@ -8,9 +8,10 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Estadios de Futbol"),
+        title: const Text("Pagina Principal"),
       ),
       bottomNavigationBar: const BNavigator(),
+      // floatingActionButton: const AddEstadio(),
     );
   }
 }
