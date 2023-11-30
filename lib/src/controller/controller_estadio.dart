@@ -1,22 +1,18 @@
-
-// import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-// import 'package:flutter_application_1/src/controller/controller_list.dart';
-// import 'package:flutter_application_1/src/models/producto_modelo.dart';
-// import 'package:flutter_application_1/src/service/producto_service.dart';
+import 'package:flutter_application_1/src/controller/controller_list_estadio.dart';
+import 'package:flutter_application_1/src/models/estadio_modelo.dart';
+import 'package:flutter_application_1/src/service/estadio_service.dart';
 import 'package:get/get.dart';
 
 class ControllerEstadio extends GetxController {
   String? _id = '';
   var estadioName = ''.obs;
-  // var estadioDate = ''.obs;
   var estadioPlace = ''.obs;
   var estadioOwner = ''.obs;
   var estadioCapacity = ''.obs;
   var estadioStatus = true.obs;
 
-  Rx<DateTime> stadiumDate= Rx<DateTime>(DateTime(1980));
+  Rx<DateTime> estadioDate = Rx<DateTime>(DateTime(1980));
 
   bool fName = false;
   bool fDate = false;
@@ -24,18 +20,16 @@ class ControllerEstadio extends GetxController {
   bool fOwner = false;
   bool fCapacity = false;
 
-
   RxnString errorName = RxnString(null);
   RxnString errorDate = RxnString(null);
   RxnString errorPlace = RxnString(null);
   RxnString errorOwner = RxnString(null);
-  RxnString errorCapacity = RxnString(null);}
+  RxnString errorCapacity = RxnString(null);
 
   Rxn<Function()> submitFunc = Rxn<Function()>(null);
-  
 
   StadiumsService? service;
-  ControllerEstadio ctrlst = Get.find();
+  ControllerListEstadio ctrlst = Get.find();
 
   var ctrName = TextEditingController().obs;
   var ctrDate = TextEditingController().obs;
@@ -43,8 +37,15 @@ class ControllerEstadio extends GetxController {
   var ctrOwner = TextEditingController().obs;
   var ctrCapacity = TextEditingController().obs;
 
-  void setAttributes(String id, String nombre, DateTime fechaFundacion, String ubicacion, 
-  String propietario,double capacidad, bool disponible) {
+  void setAttributes(
+    String id,
+    String nombre,
+    DateTime fechaFundacion,
+    String ubicacion,
+    String propietario,
+    double capacidad,
+    bool disponible,
+  ) {
     _id = id;
     ctrName.value.text = nombre;
     ctrDate.value.text = fechaFundacion.toIso8601String();
@@ -55,7 +56,7 @@ class ControllerEstadio extends GetxController {
     estadioDate.value = fechaFundacion;
     estadioPlace.value = ubicacion;
     estadioOwner.value = propietario;
-    estadioCapacity.value = capacidad;
+    estadioCapacity.value = capacidad.toString();
     estadioStatus.value = disponible;
   }
 
@@ -65,14 +66,31 @@ class ControllerEstadio extends GetxController {
 
     service = StadiumsService();
 
-    debounce<String>(estadioName, validarName,
-        time: const Duration(microseconds: 500));
-     debounce<String>(estadioPlace, validarPlace,
-        time: const Duration(microseconds: 500));
-         debounce<String>(estadioOwner, validarOwner,
-        time: const Duration(microseconds: 500));
-    debounce<String>(estadioCapacity, validarCapacity,
-        time: const Duration(microseconds: 500));
+    debounce<String>(
+      estadioName,
+      validarName,
+      time: const Duration(microseconds: 500),
+    );
+    debounce<DateTime>(
+      estadioDate,
+      validarDate,
+      time: const Duration(microseconds: 500),
+    );
+    debounce<String>(
+      estadioPlace,
+      validarPlace,
+      time: const Duration(microseconds: 500),
+    );
+    debounce<String>(
+      estadioOwner,
+      validarOwner,
+      time: const Duration(microseconds: 500),
+    );
+    debounce<String>(
+      estadioCapacity,
+      validarCapacity,
+      time: const Duration(microseconds: 500),
+    );
   }
 
   void validarName(String val) {
@@ -83,17 +101,17 @@ class ControllerEstadio extends GetxController {
       submitFunc.value = submitFunction();
       fName = true;
     } else {
-      errorName.value = 'El nombre debe ser mayor a 4 digitos';
+      errorName.value = 'El nombre debe ser mayor a 4 caracteres';
       fName = false;
     }
   }
 
-    void validarDate(DateTime val) {
+  void validarDate(DateTime val) {
     errorDate.value = null;
     submitFunc.value = null;
     final currentDate = DateTime.now();
     if (val.isAfter(currentDate)) {
-      errorDate.value = 'La fecha de fundacion no puede ser en el futuro';
+      errorDate.value = 'La fecha de fundación no puede ser en el futuro';
       fDate = false;
     } else {
       // Validación exitosa
@@ -108,7 +126,6 @@ class ControllerEstadio extends GetxController {
     submitFunc.value = null;
     if (double.tryParse(val) is double && double.parse(val) > 5000) {
       errorCapacity.value = null;
-      submitFunc.value = null;
       submitFunc.value = submitFunction();
       fCapacity = true;
     } else {
@@ -118,35 +135,38 @@ class ControllerEstadio extends GetxController {
   }
 
   void validarPlace(String val) {
-  errorPlace.value = null;
-  submitFunc.value = null;
-  if (val.trim().length > 5) {
-    // verificacion si ubicación es mayor a 5 caracteres
-    submitFunc.value = submitFunction();
-  } else {
-    errorPlace.value = 'La ubicación debe tener al menos 5 caracteres.';
+    errorPlace.value = null;
+    submitFunc.value = null;
+    if (val.trim().length > 5) {
+      // Verificación si la ubicación es mayor a 5 caracteres
+      submitFunc.value = submitFunction();
+      fPlace = true;
+    } else {
+      errorPlace.value = 'La ubicación debe tener al menos 5 caracteres.';
+      fPlace = false;
+    }
   }
-}
 
-void validarOwner(String val) {
-  errorOwner.value = null;
-  submitFunc.value = null;
-  if (val.trim().length > 3) {
-    // el nombre del propietario es mayor a 3 caracteres
-    submitFunc.value = submitFunction();
-  } else {
-    errorOwner.value = 'El nombre del propietario debe tener al menos 3 caracteres.';
+  void validarOwner(String val) {
+    errorOwner.value = null;
+    submitFunc.value = null;
+    if (val.trim().length > 3) {
+      // El nombre del propietario es mayor a 3 caracteres
+      submitFunc.value = submitFunction();
+      fOwner = true;
+    } else {
+      errorOwner.value =
+          'El nombre del propietario debe tener al menos 3 caracteres.';
+      fOwner = false;
+    }
   }
-}
-
-
 
   void nameChanged(String val) {
     estadioName.value = val;
   }
 
   void birthdateChanged(String val) {
-    estadioDate.value = val;
+    estadioDate.value = DateTime.parse(val);
   }
 
   void placeChanged(String val) {
@@ -167,7 +187,7 @@ void validarOwner(String val) {
 
   Future<bool> Function() submitFunction() {
     return () async {
-      if (!fName ||!fDate ||!fPlace ||!fOwner ||!fCapacity) {
+      if (!fName || !fDate || !fPlace || !fOwner || !fCapacity) {
         submitFunc.value = null;
         validarName(estadioName.value);
         validarDate(estadioDate.value);
@@ -179,22 +199,24 @@ void validarOwner(String val) {
         String? mensaje = 'se agregó un nuevo estadio';
         if (_id == '') {
           EstadioModelo estadio = EstadioModelo(
-              nombre: estadioName.value,
-              fechaFundacion: estadioDate.value,
-              ubicacion: estadioPlace.value,
-              propietario: estadioOwner.value,
-              capacidad: estadioCapacity.value,
-              disponible: estadioStatus.value,
+            nombre: estadioName.value,
+            fechaFundacion: estadioDate.value,
+            ubicacion: estadioPlace.value,
+            propietario: estadioOwner.value,
+            capacidad: estadioCapacity.value,
+            disponible: estadioStatus.value,
+          );
           _id = await ctrlst.agregar(estadio);
         } else {
           EstadioModelo estadio = EstadioModelo(
-              id: _id,
-              nombre: estadioName.value,
-              fechaFundacion: estadioDate.value,
-              ubicacion: estadioPlace.value,
-              propietario: estadioOwner.value,
-              capacidad: estadioCapacity.value,
-              disponible: estadioStatus.value,
+            id: _id,
+            nombre: estadioName.value,
+            fechaFundacion: estadioDate.value,
+            ubicacion: estadioPlace.value,
+            propietario: estadioOwner.value,
+            capacidad: estadioCapacity.value,
+            disponible: estadioStatus.value,
+          );
           ctrlst.actualizar(estadio);
           mensaje = 'Se actualizó un estadio';
           Get.offNamed('/listaEstadio');
@@ -213,4 +235,4 @@ void validarOwner(String val) {
       }
     };
   }
-
+}

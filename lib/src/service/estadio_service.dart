@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:worldps/src/models/jugador_modelo.dart';
+import 'package:flutter_application_1/src/models/estadio_modelo.dart';
 import 'package:http/http.dart' as http;
 
-class EstadioService extends ChangeNotifier {
+class StadiumsService extends ChangeNotifier {
   final String _baseUrl = 'worldps-faba3-default-rtdb.firebaseio.com';
   final List<EstadioModelo> estadio = [];
 

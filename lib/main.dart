@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/src/controller/controller_list_jugador.dart';
+import 'package:flutter_application_1/src/pages/estadio_lista_page.dart';
+import 'package:flutter_application_1/src/pages/estadio_page.dart';
+import 'package:flutter_application_1/src/pages/home_page.dart';
+import 'package:flutter_application_1/src/pages/jugador_lista_page.dart';
 import 'package:get/get.dart';
-import 'package:worldps/src/controller/controller_list_jugador.dart';
-import 'package:worldps/src/pages/estadio_lista_page.dart';
-import 'package:worldps/src/pages/estadio_page.dart';
-import 'package:worldps/src/pages/home_page.dart';
-import 'package:worldps/src/pages/jugador_lista_page.dart';
-
-import 'package:worldps/src/pages/jugador_page.dart';
 
 void main() {
   runApp(const MyApp());

@@ -3,9 +3,6 @@ import 'package:flutter_application_1/src/controller/controller_list_jugador.dar
 import 'package:flutter_application_1/src/models/jugador_modelo.dart';
 import 'package:flutter_application_1/src/service/jugador_service.dart';
 import 'package:get/get.dart';
-// import 'package:worldps/src/controller/controller_list_jugador.dart';
-// import 'package:worldps/src/models/jugador_modelo.dart';
-// import 'package:worldps/src/service/jugador_service.dart';
 
 class ControllerPlayer extends GetxController {
   String? _id = '';

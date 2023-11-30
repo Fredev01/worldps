@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:worldps/src/custom_widget/drawer_item.dart';
+import 'package:flutter_application_1/src/custom_widget/drawer_item.dart';
+// import 'package:worldps/src/custom_widget/drawer_item.dart';
 // import 'package:worldps/scr/pages/estadio_page.dart';
 
 class EstadioListaPage extends StatelessWidget {

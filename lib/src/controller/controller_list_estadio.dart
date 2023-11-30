@@ -1,10 +1,17 @@
-import 'package:flutter_application_1/src/models/producto_modelo.dart';
-import 'package:flutter_application_1/src/service/producto_service.dart';
+import 'package:flutter_application_1/src/models/estadio_modelo.dart';
+import 'package:flutter_application_1/src/service/estadio_service.dart';
 import 'package:get/get.dart';
 
-class ControllerList extends GetxController {
+class ControllerListEstadio extends GetxController {
   var listaEstadio = <EstadioModelo>[].obs;
   StadiumsService service = StadiumsService();
+
+  @override
+  void onInit() {
+    super.onInit();
+    var list = service.loadEstadio();
+    list.then((value) => listaEstadio.value = value);
+  }
 
   @override
   void refresh() {
