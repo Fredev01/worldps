@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:worldps/src/pages/estadio_page.dart';
+import 'package:worldps/src/pages/jugador_page.dart';
 
 class BNavigator extends StatelessWidget {
   const BNavigator({Key? key}) : super(key: key);
@@ -45,6 +46,23 @@ class AddEstadio extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => const EstadioPage()),
+        );
+      },
+      child: const Icon(Icons.add),
+    );
+  }
+}
+
+class AddJugador extends StatelessWidget {
+  const AddJugador({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const JugadorPage()),
         );
       },
       child: const Icon(Icons.add),
