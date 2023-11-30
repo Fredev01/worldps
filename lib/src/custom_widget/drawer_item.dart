@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:worldps/src/pages/estadio_page.dart';
 import 'package:worldps/src/pages/jugador_page.dart';
 
@@ -12,10 +11,10 @@ class BNavigator extends StatelessWidget {
     return BottomNavigationBar(
       items: const [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Inicio'),
-        BottomNavigationBarItem(icon: Icon(Icons.stadium), label: 'Estadio'),
-        BottomNavigationBarItem(icon: Icon(Icons.person_4), label: 'Jugadores'),
         BottomNavigationBarItem(icon: Icon(Icons.stadium), label: 'Estadios'),
+        BottomNavigationBarItem(icon: Icon(Icons.person_4), label: 'Jugadores'),
       ],
+      backgroundColor: Color.fromARGB(255, 254, 252, 252),
       currentIndex: Get.currentRoute == '/home' ? 0 : 1,
       onTap: (index) {
         switch (index) {
@@ -24,10 +23,11 @@ class BNavigator extends StatelessWidget {
             break;
           case 1:
             Get.toNamed('/Estadio');
-
+            break;
+          case 2:
             Get.toNamed('/Jugadores');
             break;
-          case 1:
+          case 3:
             Get.toNamed('/listaEstadio');
             break;
         }
@@ -37,16 +37,13 @@ class BNavigator extends StatelessWidget {
 }
 
 class AddEstadio extends StatelessWidget {
-  const AddEstadio({super.key});
+  const AddEstadio({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
       onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const EstadioPage()),
-        );
+        Get.to(() => const EstadioPage());
       },
       child: const Icon(Icons.add),
     );
@@ -54,16 +51,13 @@ class AddEstadio extends StatelessWidget {
 }
 
 class AddJugador extends StatelessWidget {
-  const AddJugador({super.key});
+  const AddJugador({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
       onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const JugadorPage()),
-        );
+        Get.to(() => const JugadorPage());
       },
       child: const Icon(Icons.add),
     );
