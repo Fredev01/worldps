@@ -1,6 +1,8 @@
+import 'package:flutter_application_1/src/models/jugador_modelo.dart';
+import 'package:flutter_application_1/src/service/jugador_service.dart';
 import 'package:get/get.dart';
-import 'package:worldps/src/models/jugador_modelo.dart';
-import 'package:worldps/src/service/jugador_service.dart';
+// import 'package:worldps/src/models/jugador_modelo.dart';
+// import 'package:worldps/src/service/jugador_service.dart';
 
 class ControllerListJugador extends GetxController {
   var listaJugador = <JugadorModelo>[].obs;
