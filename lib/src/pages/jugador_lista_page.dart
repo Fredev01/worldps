@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:worldps/scr/controller/controller_list_jugador.dart';
+import 'package:worldps/src/controller/controller_list_jugador.dart';
 import 'package:worldps/src/custom_widget/drawer_item.dart';
 import 'package:worldps/src/custom_widget/item_jugador.dart';
 

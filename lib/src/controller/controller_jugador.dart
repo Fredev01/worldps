@@ -28,7 +28,7 @@ class ControllerPlayer extends GetxController {
   Rxn<Function()> submitFunc = Rxn<Function()>(null);
 
   PlayersService? service;
-  //ControllerListJugador ctrlst = Get.find();
+  ControllerListJugador ctrlst = Get.find();
   var ctrName = TextEditingController().obs;
   var ctrBirthdate = TextEditingController().obs;
   var ctrNationality = TextEditingController().obs;
@@ -192,8 +192,8 @@ class ControllerPlayer extends GetxController {
             status: playerStatus.value,
             ultimoEquipo: playerLastTeam.value,
           );
-          service?.createPlayer(jugador);
-          // _id = await ctrlst.agregar(jugador);
+          //service?.createPlayer(jugador);
+          _id = await ctrlst.agregar(jugador);
         } else {
           JugadorModelo jugador = JugadorModelo(
             id: _id,
@@ -204,7 +204,7 @@ class ControllerPlayer extends GetxController {
             status: playerStatus.value,
             ultimoEquipo: playerLastTeam.value,
           );
-          //ctrlst.actualizar(jugador);
+          ctrlst.actualizar(jugador);
           mensaje = 'Se actualizó el jugador';
           Get.offNamed('/listaJugador');
         }

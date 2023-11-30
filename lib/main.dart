@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:worldps/src/controller/controller_list_jugador.dart';
 import 'package:worldps/src/pages/estadio_lista_page.dart';
 import 'package:worldps/src/pages/estadio_page.dart';
 import 'package:worldps/src/pages/home_page.dart';
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(ControllerListJugador());
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Estadios',
