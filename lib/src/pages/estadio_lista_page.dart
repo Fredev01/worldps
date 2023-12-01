@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:worldps/src/custom_widget/drawer_item.dart';
+// import 'package:worldps/scr/pages/estadio_page.dart';
 
 class EstadioListaPage extends StatelessWidget {
   const EstadioListaPage({super.key});
@@ -9,6 +11,7 @@ class EstadioListaPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Lista de estadios'),
       ),
+      floatingActionButton: const AddEstadio(),
     );
   }
 }

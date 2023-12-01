@@ -28,7 +28,7 @@ class ControllerPlayer extends GetxController {
   Rxn<Function()> submitFunc = Rxn<Function()>(null);
 
   PlayersService? service;
-  //ControllerListJugador ctrlst = Get.find();
+  ControllerListJugador ctrlst = Get.find();
   var ctrName = TextEditingController().obs;
   var ctrBirthdate = TextEditingController().obs;
   var ctrNationality = TextEditingController().obs;
@@ -183,28 +183,30 @@ class ControllerPlayer extends GetxController {
 
       if (isValid) {
         String? mensaje = 'Se agregó un nuevo jugador';
+        String formattedDate =
+            '${playerBirthdate.value.day.toString().padLeft(2, '0')}/${playerBirthdate.value.month.toString().padLeft(2, '0')}/${playerBirthdate.value.year.toString()}';
         if (_id == '') {
           JugadorModelo jugador = JugadorModelo(
             nombre: playerName.value,
-            fechaNacimiento: playerBirthdate.value,
+            fechaNacimiento: formattedDate,
             nacionalidad: playerNationality.value,
             email: playerEmail.value,
             status: playerStatus.value,
             ultimoEquipo: playerLastTeam.value,
           );
-          service?.createPlayer(jugador);
-          // _id = await ctrlst.agregar(jugador);
+          //service?.createPlayer(jugador);
+          _id = await ctrlst.agregar(jugador);
         } else {
           JugadorModelo jugador = JugadorModelo(
             id: _id,
             nombre: playerName.value,
-            fechaNacimiento: playerBirthdate.value,
+            fechaNacimiento: formattedDate,
             nacionalidad: playerNationality.value,
             email: playerEmail.value,
             status: playerStatus.value,
             ultimoEquipo: playerLastTeam.value,
           );
-          //ctrlst.actualizar(jugador);
+          ctrlst.actualizar(jugador);
           mensaje = 'Se actualizó el jugador';
           Get.offNamed('/listaJugador');
         }
