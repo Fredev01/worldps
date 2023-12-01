@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:worldps/src/models/jugador_modelo.dart';
+import 'package:flutter_application_1/src/models/jugador_modelo.dart';
 
 class ItemJugador extends StatelessWidget {
   final JugadorModelo jugador;

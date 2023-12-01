@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/src/controller/controller_list_jugador.dart';
+import 'package:flutter_application_1/src/models/jugador_modelo.dart';
+import 'package:flutter_application_1/src/service/jugador_service.dart';
 import 'package:get/get.dart';
-import 'package:worldps/src/controller/controller_list_jugador.dart';
-import 'package:worldps/src/models/jugador_modelo.dart';
-import 'package:worldps/src/service/jugador_service.dart';
 
 class ControllerPlayer extends GetxController {
   String? _id = '';
@@ -28,7 +28,7 @@ class ControllerPlayer extends GetxController {
   Rxn<Function()> submitFunc = Rxn<Function()>(null);
 
   PlayersService? service;
-  //ControllerListJugador ctrlst = Get.find();
+  ControllerListJugador ctrlst = Get.find();
   var ctrName = TextEditingController().obs;
   var ctrBirthdate = TextEditingController().obs;
   var ctrNationality = TextEditingController().obs;
@@ -192,8 +192,8 @@ class ControllerPlayer extends GetxController {
             status: playerStatus.value,
             ultimoEquipo: playerLastTeam.value,
           );
-          service?.createPlayer(jugador);
-          // _id = await ctrlst.agregar(jugador);
+          //service?.createPlayer(jugador);
+          _id = await ctrlst.agregar(jugador);
         } else {
           JugadorModelo jugador = JugadorModelo(
             id: _id,
@@ -204,7 +204,7 @@ class ControllerPlayer extends GetxController {
             status: playerStatus.value,
             ultimoEquipo: playerLastTeam.value,
           );
-          //ctrlst.actualizar(jugador);
+          ctrlst.actualizar(jugador);
           mensaje = 'Se actualizó el jugador';
           Get.offNamed('/listaJugador');
         }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/src/pages/estadio_page.dart';
+import 'package:flutter_application_1/src/pages/jugador_page.dart';
 import 'package:get/get.dart';
-import 'package:worldps/src/pages/estadio_page.dart';
-import 'package:worldps/src/pages/jugador_page.dart';
 
 class BNavigator extends StatelessWidget {
   const BNavigator({Key? key}) : super(key: key);
