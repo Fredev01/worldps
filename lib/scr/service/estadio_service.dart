@@ -1,7 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:worldps/src/models/estadio_modelo.dart';
+import 'package:flutter_application_1/scr/models/estadio_modelo.dart';
+// import 'package:worldps/src/models/estadio_modelo.dart';
 import 'package:http/http.dart' as http;
 
 class EstadioService extends ChangeNotifier {

@@ -1,7 +1,7 @@
 // import 'package:flutter_application_1/src/models/producto_modelo.dart';
 // import 'package:flutter_application_1/src/service/producto_service.dart';
+import 'package:flutter_application_1/scr/models/estadio_modelo.dart';
 import 'package:get/get.dart';
-import 'package:worldps/src/models/estadio_modelo.dart';
 
 class ControllerList extends GetxController {
   var listaEstadio = <EstadioModelo>[].obs;

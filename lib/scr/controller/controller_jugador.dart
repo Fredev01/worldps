@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/scr/models/jugador_modelo.dart';
+import 'package:flutter_application_1/scr/service/jugador_service.dart';
 import 'package:get/get.dart';
-import 'package:worldps/src/controller/controller_list_jugador.dart';
-import 'package:worldps/src/models/jugador_modelo.dart';
-import 'package:worldps/src/service/jugador_service.dart';
 
 class ControllerPlayer extends GetxController {
   String? _id = '';
