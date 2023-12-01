@@ -12,10 +12,6 @@ class DetallesPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           'Detalles del jugador',
-          style: TextStyle(
-            fontWeight: FontWeight.w900,
-            fontSize: 30.0,
-          ),
         ),
         backgroundColor: Colors.green,
         centerTitle: true,
