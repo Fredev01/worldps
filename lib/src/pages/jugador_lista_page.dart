@@ -22,7 +22,7 @@ class JugadorListaPage extends StatelessWidget {
             var jugador = ctr.listaJugador[index];
             return GestureDetector(
               onTap: () {
-                // Navegar a la página de detalles y pasar el jugador
+                // Mandar al direccion detalles :3
                 Get.toNamed('/detalles', arguments: jugador);
               },
               child: ItemJugador(jugador: jugador),

@@ -17,7 +17,7 @@ class DetallesPage extends StatelessWidget {
             fontSize: 30.0,
           ),
         ),
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.green,
         centerTitle: true,
       ),
       body: cuerpo(context),
@@ -39,7 +39,7 @@ class DetallesPage extends StatelessWidget {
       jugador.fechaNacimiento,
       jugador.nacionalidad,
       jugador.email,
-      jugador.status.toString(), // Cambia aquí, convierte bool a String
+      jugador.status ? 'Activo' : 'Retirado',
       jugador.ultimoEquipo,
     ];
 
@@ -83,8 +83,10 @@ class DetallesPage extends StatelessWidget {
       );
     }
 
-    return ListView(
-      children: formularios,
-    );
+    return Padding(
+        padding: const EdgeInsets.only(top: 16.0),
+        child: ListView(
+          children: formularios,
+        ));
   }
 }
