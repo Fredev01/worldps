@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/src/controller/controller_jugador.dart';
 import 'package:get/get.dart';
-<<<<<<< HEAD
-// import 'package:worldps/src/controller/controller_jugador.dart';
-=======
 import 'package:intl/intl.dart';
-import 'package:worldps/src/controller/controller_jugador.dart';
->>>>>>> 0f142edae77c5ade23de83d005cd4e798229f812
 
 class JugadorPage extends StatelessWidget {
   const JugadorPage({super.key});
