@@ -49,7 +49,7 @@ class ControllerEstadio extends GetxController {
   ) {
     _id = id;
     ctrName.value.text = nombre;
-    ctrDate.value.text = fechaFundacion.toIso8601String();
+    ctrDate.value.text = fechaFundacion.toString();
     ctrPlace.value.text = ubicacion;
     ctrOwner.value.text = propietario;
     ctrCapacity.value.text = capacidad.toString();
@@ -162,6 +162,7 @@ class ControllerEstadio extends GetxController {
           'El nombre del propietario debe tener al menos 3 caracteres.';
       fOwner = false;
     }
+    updateButtonState();
   }
 
   void nameChanged(String val) {
@@ -194,23 +195,18 @@ class ControllerEstadio extends GetxController {
 
   Future<bool> Function() submitFunction() {
     return () async {
-      if (!fName || !fDate || !fPlace || !fOwner || !fCapacity) {
-        submitFunc.value = null;
-        validarName(estadioName.value);
-        validarDate(estadioDate.value);
-        validarPlace(estadioPlace.value);
-        validarOwner(estadioOwner.value);
-        validarCapacity(estadioCapacity.value);
-        return true;
-      } else {
+      bool isValid = fName && fDate && fPlace && fOwner && fCapacity;
+      if (isValid) {
         String? mensaje = 'se agregó un nuevo estadio';
+        String formattedDate =
+            '${estadioDate.value.day.toString().padLeft(2, '0')}/${estadioDate.value.month.toString().padLeft(2, '0')}/${estadioDate.value.year.toString()}';
         if (_id == '') {
           EstadioModelo estadio = EstadioModelo(
             nombre: estadioName.value,
-            fechaFundacion: estadioDate.value,
+            fechaFundacion: formattedDate,
             ubicacion: estadioPlace.value,
             propietario: estadioOwner.value,
-            capacidad: estadioCapacity.value,
+            capacidad: int.tryParse(estadioCapacity.value) ?? 0,
             disponible: estadioStatus.value,
           );
           _id = await ctrlst.agregar(estadio);
@@ -218,17 +214,16 @@ class ControllerEstadio extends GetxController {
           EstadioModelo estadio = EstadioModelo(
             id: _id,
             nombre: estadioName.value,
-            fechaFundacion: estadioDate.value,
+            fechaFundacion: formattedDate,
             ubicacion: estadioPlace.value,
             propietario: estadioOwner.value,
-            capacidad: estadioCapacity.value,
+            capacidad: int.tryParse(estadioCapacity.value) ?? 0,
             disponible: estadioStatus.value,
           );
           ctrlst.actualizar(estadio);
           mensaje = 'Se actualizó un estadio';
           Get.offNamed('/listaEstadio');
         }
-
         if (_id!.isNotEmpty) {
           ctrName.value.text = '';
           ctrDate.value.text = '';
@@ -239,7 +234,16 @@ class ControllerEstadio extends GetxController {
           Get.snackbar('Estadio', mensaje);
         }
         return true;
+      } else {
+        submitFunc.value = null;
+        validarName(estadioName.value);
+        validarDate(estadioDate.value);
+        validarPlace(estadioPlace.value);
+        validarOwner(estadioOwner.value);
+        validarCapacity(estadioCapacity.value);
       }
+      updateButtonState(); // Llama a esta función después de validar los campos
+      return isValid;
     };
   }
 }

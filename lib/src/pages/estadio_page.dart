@@ -94,7 +94,7 @@ class EstadioPage extends StatelessWidget {
               Obx(() {
                 return ElevatedButton.icon(
                     onPressed:
-                        fx.isButtonEnabledRx.value ? fx.submitFunction : null,
+                        fx.isButtonEnabledRx.value ? fx.submitFunc.value : null,
                     icon: const Icon(Icons.save),
                     label: const Text('Guardar'));
               }),

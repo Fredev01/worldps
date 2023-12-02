@@ -11,16 +11,16 @@ class EstadioModelo {
 
   String? id;
   String nombre;
-  DateTime fechaFundacion;
+  String fechaFundacion;
   String ubicacion;
   String propietario;
-  String capacidad;
+  int capacidad;
   bool disponible;
 
   factory EstadioModelo.fromJson(Map<String, dynamic> json) => EstadioModelo(
         id: json["id"],
         nombre: json["nombre"],
-        fechaFundacion: DateTime.parse(json["fechaFundacion"]),
+        fechaFundacion: json["fecha_fundacion"],
         ubicacion: json["ubicacion"],
         propietario: json["propietario"],
         capacidad: json["capacidad"],
@@ -29,10 +29,10 @@ class EstadioModelo {
 
   Map<String, dynamic> toJson() => {
         "nombre": nombre,
-        "fechaFundacion": fechaFundacion.toIso8601String(),
+        "fecha_fundacion": fechaFundacion,
         "ubicacion": ubicacion,
         "propietario": propietario,
-        "capacidad": capacidad.toString(),
+        "capacidad": capacidad,
         "disponible": disponible,
       };
 }
