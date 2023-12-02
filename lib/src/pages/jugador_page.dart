@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:worldps/src/controller/controller_jugador.dart';
 
 class JugadorPage extends StatelessWidget {
@@ -10,14 +11,23 @@ class JugadorPage extends StatelessWidget {
     var fx = Get.put(ControllerPlayer());
 
     if (Get.arguments != null) {
-      fx.setAttributes(
-          Get.arguments['id'],
-          Get.arguments['nombre'],
-          Get.arguments['fechaNacimiento'],
-          Get.arguments['nacionalidad'],
-          Get.arguments['email'],
-          Get.arguments['status'],
-          Get.arguments['ultimoEquipo']);
+      String? fechaNacimientoString = Get.arguments['fechaNacimiento'];
+      print(Get.arguments['fechaNacimiento']);
+      //print(fechaNacimientoString);
+      print(Get.arguments['nacionalidad']);
+      if (fechaNacimientoString != null) {
+        DateTime fechaNacimiento =
+            DateFormat('dd/MM/yyyy').parse(fechaNacimientoString);
+
+        fx.setAttributes(
+            Get.arguments['id'],
+            Get.arguments['nombre'],
+            fechaNacimiento,
+            Get.arguments['nacionalidad'],
+            Get.arguments['email'],
+            Get.arguments['status'],
+            Get.arguments['ultimoEquipo']);
+      } else {}
     }
     return Scaffold(
       appBar: AppBar(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:worldps/src/controller/controller_list_jugador.dart';
 import 'package:worldps/src/models/jugador_modelo.dart';
 import 'package:worldps/src/service/jugador_service.dart';
@@ -39,7 +40,7 @@ class ControllerPlayer extends GetxController {
       String nacionalidad, String email, bool status, String ultimoEquipo) {
     _id = id;
     ctrName.value.text = nombre;
-    ctrBirthdate.value.text = fechaNacimiento.toIso8601String();
+    ctrBirthdate.value.text = fechaNacimiento.toString();
     ctrNationality.value.text = nacionalidad;
     ctrEmail.value.text = email;
     ctrLastTeam.value.text = ultimoEquipo;

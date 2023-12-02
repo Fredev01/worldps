@@ -8,7 +8,7 @@ import 'package:worldps/src/pages/estadio_page.dart';
 import 'package:worldps/src/pages/home_page.dart';
 import 'package:worldps/src/pages/jugador_lista_page.dart';
 
-//import 'package:worldps/src/pages/jugador_page.dart';
+import 'package:worldps/src/pages/jugador_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -39,6 +39,7 @@ class MyApp extends StatelessWidget {
             return DetallesPage(jugador: jugador!);
           },
         ),
+        GetPage(name: '/jugador', page: () => const JugadorPage()),
       ],
     );
   }

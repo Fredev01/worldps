@@ -40,7 +40,7 @@ class ItemJugador extends StatelessWidget {
                 {ctrJugador.delete(jugador)}
               else
                 {
-                  Get.to(() => const JugadorPage(), arguments: {
+                  Get.toNamed('jugador', arguments: {
                     'id': jugador.id,
                     'nombre': jugador.nombre,
                     'fechaNacimiento ': jugador.fechaNacimiento,
