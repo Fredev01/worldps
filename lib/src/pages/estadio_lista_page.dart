@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/scr/controller/controller_list_estadio.dart';
+import 'package:flutter_application_1/src/controller/controller_list_estadio.dart';
 import 'package:flutter_application_1/src/custom_widget/drawer_item.dart';
 import 'package:get/get.dart';
 
 class EstadioListaPage extends StatelessWidget {
   EstadioListaPage({super.key});
-  final ControllerList ctr = Get.put(ControllerList());
+  final ControllerListEstadio ctr = Get.put(ControllerListEstadio());
 
   @override
   Widget build(BuildContext context) {

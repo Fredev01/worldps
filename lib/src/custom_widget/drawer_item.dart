@@ -22,14 +22,14 @@ class BNavigator extends StatelessWidget {
             Get.toNamed('/home');
             break;
           case 1:
-            Get.toNamed('/Estadio');
+            Get.toNamed('/listaEstadio');
             break;
           case 2:
             Get.toNamed('/Jugadores');
             break;
-          case 3:
-            Get.toNamed('/listaEstadio');
-            break;
+          // case 3:
+          //   Get.toNamed('/listaEstadio');
+          //   break;
         }
       },
     );
