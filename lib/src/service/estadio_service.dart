@@ -7,8 +7,8 @@ class StadiumsService extends ChangeNotifier {
   final String _baseUrl = 'worldps-faba3-default-rtdb.firebaseio.com';
   final List<EstadioModelo> estadio = [];
 
-  Future<String?> createestadio(EstadioModelo estadio) async {
-    final url = Uri.https(_baseUrl, 'estadio.json');
+  Future<String?> createEstadio(EstadioModelo estadio) async {
+    final url = Uri.https(_baseUrl, 'estadios.json');
     final resp = await http.post(url, body: json.encode(estadio));
     final decodedData = json.decode(resp.body);
 
@@ -19,7 +19,7 @@ class StadiumsService extends ChangeNotifier {
   // leer los datos de firebase
   Future<List<EstadioModelo>> loadEstadio() async {
     final List<EstadioModelo> estadio = [];
-    final url = Uri.https(_baseUrl, 'estadio.json');
+    final url = Uri.https(_baseUrl, 'estadios.json');
     final resp = await http.get(url);
 
     final Map<String, dynamic> estadioMap = json.decode(resp.body);
@@ -33,13 +33,13 @@ class StadiumsService extends ChangeNotifier {
   }
 
   Future<bool> deleteestadio(EstadioModelo value) async {
-    final url = Uri.https(_baseUrl, 'estadio/${value.id}.json');
+    final url = Uri.https(_baseUrl, 'estadios/${value.id}.json');
     final resp = await http.delete(url);
     return resp.statusCode == 200;
   }
 
   Future<String?> updateestadio(EstadioModelo estadio) async {
-    final url = Uri.https(_baseUrl, 'estadio/${estadio.id}.json');
+    final url = Uri.https(_baseUrl, 'estadios/${estadio.id}.json');
     await http.put(url, body: json.encode(estadio));
     return estadio.id;
   }

@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/src/controller/controller_list_estadio.dart';
-import 'package:flutter_application_1/src/controller/controller_list_jugador.dart';
 import 'package:flutter_application_1/src/models/estadio_modelo.dart';
-import 'package:flutter_application_1/src/models/jugador_modelo.dart';
 import 'package:get/get.dart';
 
-class ItemJugador extends StatelessWidget {
-  final JugadorModelo jugador;
+class ItemEstadio extends StatelessWidget {
+  final EstadioModelo estadio;
 
-  const ItemJugador({
+  const ItemEstadio({
     Key? key,
-    required this.jugador,
+    required this.estadio,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final ControllerListJugador ctrJugador = Get.find();
+    final ControllerListEstadio ctrEstadio = Get.find();
 
-    Color color = jugador.status ? Colors.white : Colors.grey;
-    IconData icon = jugador.status ? Icons.check : Icons.cancel;
+    Color color = estadio.disponible ? Colors.white : Colors.grey;
+    IconData icon = estadio.disponible ? Icons.check : Icons.cancel;
 
     return Card(
       color: color,
@@ -38,23 +36,23 @@ class ItemJugador extends StatelessWidget {
         ),
         onDismissed: ((direction) => {
               if (direction == DismissDirection.endToStart)
-                {ctrJugador.delete(jugador)}
+                {ctrEstadio.delete(estadio)}
               else
                 {
-                  Get.toNamed('jugador', arguments: {
-                    'id': jugador.id,
-                    'nombre': jugador.nombre,
-                    'fechaNacimiento ': jugador.fechaNacimiento,
-                    'nacionalidad': jugador.nacionalidad,
-                    'email': jugador.email,
-                    'status': jugador.status,
-                    'ultimoEquipo': jugador.ultimoEquipo,
+                  Get.toNamed('estadio', arguments: {
+                    'id': estadio.id,
+                    'nombre': estadio.nombre,
+                    'fechaFundacion ': estadio.fechaFundacion,
+                    'ubicacion': estadio.ubicacion,
+                    'propietario': estadio.propietario,
+                    'capacidad': estadio.capacidad,
+                    'disponible': estadio.disponible,
                   })
                 }
             }),
         child: ListTile(
-          title: Text(jugador.nombre),
-          subtitle: Text(jugador.ultimoEquipo),
+          title: Text(estadio.nombre),
+          subtitle: Text(estadio.propietario),
           trailing: Icon(
             icon,
             color: Colors.black,

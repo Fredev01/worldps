@@ -10,22 +10,22 @@ class BNavigator extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       items: const [
+        BottomNavigationBarItem(icon: Icon(Icons.person_4), label: 'Jugadores'),
         BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Inicio'),
         BottomNavigationBarItem(icon: Icon(Icons.stadium), label: 'Estadios'),
-        BottomNavigationBarItem(icon: Icon(Icons.person_4), label: 'Jugadores'),
       ],
       backgroundColor: Color.fromARGB(255, 254, 252, 252),
       currentIndex: Get.currentRoute == '/home' ? 0 : 1,
       onTap: (index) {
         switch (index) {
           case 0:
-            Get.toNamed('/home');
+            Get.toNamed('/Jugadores');
             break;
           case 1:
-            Get.toNamed('/listaEstadio');
+            Get.toNamed('/home');
             break;
           case 2:
-            Get.toNamed('/Jugadores');
+            Get.toNamed('/listaEstadio');
             break;
           // case 3:
           //   Get.toNamed('/listaEstadio');

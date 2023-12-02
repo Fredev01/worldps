@@ -64,9 +64,7 @@ class ControllerEstadio extends GetxController {
   @override
   void onInit() {
     super.onInit();
-
     service = StadiumsService();
-
     debounce<String>(
       estadioName,
       validarName,

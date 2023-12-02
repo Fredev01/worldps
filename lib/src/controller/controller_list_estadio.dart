@@ -34,7 +34,7 @@ class ControllerListEstadio extends GetxController {
   }
 
   Future<String?> agregar(EstadioModelo estadio) async {
-    String? id = await service.createestadio(estadio);
+    String? id = await service.createEstadio(estadio);
     estadio.id = id;
     listaEstadio.add(estadio);
     return id;
