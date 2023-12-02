@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/src/controller/controller_jugador.dart';
 import 'package:get/get.dart';
+<<<<<<< HEAD
 // import 'package:worldps/src/controller/controller_jugador.dart';
+=======
+import 'package:intl/intl.dart';
+import 'package:worldps/src/controller/controller_jugador.dart';
+>>>>>>> 0f142edae77c5ade23de83d005cd4e798229f812
 
 class JugadorPage extends StatelessWidget {
   const JugadorPage({super.key});
@@ -11,14 +16,23 @@ class JugadorPage extends StatelessWidget {
     var fx = Get.put(ControllerPlayer());
 
     if (Get.arguments != null) {
-      fx.setAttributes(
-          Get.arguments['id'],
-          Get.arguments['nombre'],
-          Get.arguments['fechaNacimiento'],
-          Get.arguments['nacionalidad'],
-          Get.arguments['email'],
-          Get.arguments['status'],
-          Get.arguments['ultimoEquipo']);
+      String? fechaNacimientoString = Get.arguments['fechaNacimiento'];
+      print(Get.arguments['fechaNacimiento']);
+      //print(fechaNacimientoString);
+      print(Get.arguments['nacionalidad']);
+      if (fechaNacimientoString != null) {
+        DateTime fechaNacimiento =
+            DateFormat('dd/MM/yyyy').parse(fechaNacimientoString);
+
+        fx.setAttributes(
+            Get.arguments['id'],
+            Get.arguments['nombre'],
+            fechaNacimiento,
+            Get.arguments['nacionalidad'],
+            Get.arguments['email'],
+            Get.arguments['status'],
+            Get.arguments['ultimoEquipo']);
+      } else {}
     }
     return Scaffold(
       appBar: AppBar(

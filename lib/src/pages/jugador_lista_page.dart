@@ -23,7 +23,13 @@ class JugadorListaPage extends StatelessWidget {
           itemCount: ctr.listaJugador.length,
           itemBuilder: (BuildContext context, int index) {
             var jugador = ctr.listaJugador[index];
-            return ItemJugador(jugador: jugador);
+            return GestureDetector(
+              onTap: () {
+                // Mandar al direccion detalles :3
+                Get.toNamed('/detalles', arguments: jugador);
+              },
+              child: ItemJugador(jugador: jugador),
+            );
           })),
       floatingActionButton: const AddJugador(),
     );

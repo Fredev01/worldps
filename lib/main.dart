@@ -6,6 +6,16 @@ import 'package:flutter_application_1/src/pages/estadio_page.dart';
 import 'package:flutter_application_1/src/pages/home_page.dart';
 import 'package:flutter_application_1/src/pages/jugador_lista_page.dart';
 import 'package:get/get.dart';
+<<<<<<< HEAD
+=======
+import 'package:worldps/src/controller/controller_list_jugador.dart';
+import 'package:worldps/src/models/jugador_modelo.dart';
+import 'package:worldps/src/pages/detalles_page.dart';
+import 'package:worldps/src/pages/estadio_lista_page.dart';
+import 'package:worldps/src/pages/estadio_page.dart';
+import 'package:worldps/src/pages/home_page.dart';
+import 'package:worldps/src/pages/jugador_lista_page.dart';
+>>>>>>> 0f142edae77c5ade23de83d005cd4e798229f812
 
 // import 'package:worldps/src/pages/jugador_page.dart';
 
@@ -32,7 +42,14 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/Estadio', page: () => const EstadioPage()),
         GetPage(name: '/listaEstadio', page: () => EstadioListaPage()),
         GetPage(name: '/Jugadores', page: () => JugadorListaPage()),
-        // GetPage(name: '/listaJugadores', page: () => const Listaj()),
+        GetPage(
+          name: '/detalles',
+          page: () {
+            final jugador = Get.arguments as JugadorModelo?;
+            return DetallesPage(jugador: jugador!);
+          },
+        ),
+        GetPage(name: '/jugador', page: () => const JugadorPage()),
       ],
     );
   }

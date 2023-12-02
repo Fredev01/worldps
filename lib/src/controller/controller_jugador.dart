@@ -3,6 +3,13 @@ import 'package:flutter_application_1/src/controller/controller_list_jugador.dar
 import 'package:flutter_application_1/src/models/jugador_modelo.dart';
 import 'package:flutter_application_1/src/service/jugador_service.dart';
 import 'package:get/get.dart';
+<<<<<<< HEAD
+=======
+import 'package:intl/intl.dart';
+import 'package:worldps/src/controller/controller_list_jugador.dart';
+import 'package:worldps/src/models/jugador_modelo.dart';
+import 'package:worldps/src/service/jugador_service.dart';
+>>>>>>> 0f142edae77c5ade23de83d005cd4e798229f812
 
 class ControllerPlayer extends GetxController {
   String? _id = '';
@@ -39,7 +46,7 @@ class ControllerPlayer extends GetxController {
       String nacionalidad, String email, bool status, String ultimoEquipo) {
     _id = id;
     ctrName.value.text = nombre;
-    ctrBirthdate.value.text = fechaNacimiento.toIso8601String();
+    ctrBirthdate.value.text = fechaNacimiento.toString();
     ctrNationality.value.text = nacionalidad;
     ctrEmail.value.text = email;
     ctrLastTeam.value.text = ultimoEquipo;
@@ -183,10 +190,12 @@ class ControllerPlayer extends GetxController {
 
       if (isValid) {
         String? mensaje = 'Se agregó un nuevo jugador';
+        String formattedDate =
+            '${playerBirthdate.value.day.toString().padLeft(2, '0')}/${playerBirthdate.value.month.toString().padLeft(2, '0')}/${playerBirthdate.value.year.toString()}';
         if (_id == '') {
           JugadorModelo jugador = JugadorModelo(
             nombre: playerName.value,
-            fechaNacimiento: playerBirthdate.value,
+            fechaNacimiento: formattedDate,
             nacionalidad: playerNationality.value,
             email: playerEmail.value,
             status: playerStatus.value,
@@ -198,7 +207,7 @@ class ControllerPlayer extends GetxController {
           JugadorModelo jugador = JugadorModelo(
             id: _id,
             nombre: playerName.value,
-            fechaNacimiento: playerBirthdate.value,
+            fechaNacimiento: formattedDate,
             nacionalidad: playerNationality.value,
             email: playerEmail.value,
             status: playerStatus.value,
