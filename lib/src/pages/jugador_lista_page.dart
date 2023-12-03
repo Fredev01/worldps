@@ -11,8 +11,10 @@ class JugadorListaPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: buildCustomDrawer(),
       appBar: AppBar(
         title: const Text('Lista de jugadores'),
+        // automaticallyImplyLeading: false,
       ),
       body: Obx(() => ListView.builder(
           padding: const EdgeInsets.all(10),
@@ -29,6 +31,7 @@ class JugadorListaPage extends StatelessWidget {
             );
           })),
       floatingActionButton: const AddJugador(),
+      // bottomNavigationBar: const NavListJoga(),
     );
   }
 }

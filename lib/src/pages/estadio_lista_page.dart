@@ -11,8 +11,10 @@ class EstadioListaPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: buildCustomDrawer(),
       appBar: AppBar(
         title: const Text('Lista de Estadios'),
+        // automaticallyImplyLeading: false,
       ),
       body: Obx(() => ListView.builder(
           padding: const EdgeInsets.all(10),

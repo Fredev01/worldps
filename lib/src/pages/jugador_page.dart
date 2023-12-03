@@ -113,21 +113,4 @@ class JugadorPage extends StatelessWidget {
       ),
     );
   }
-
-  // Future<void> _selectDate(
-  //     BuildContext context, ControllerPlayer controller) async {
-  //   final DateTime? picked = await showDatePicker(
-  //     context: context,
-  //     initialDate: controller.playerBirthdate.value,
-  //     firstDate: DateTime(1950),
-  //     lastDate: DateTime(2005),
-  //   );
-
-  //   if (picked != null && picked != controller.playerBirthdate.value) {
-  //     controller.birthdateChanged(picked);
-  //     final formattedDate =
-  //         '${picked.day.toString().padLeft(2, '0')}/${picked.month.toString().padLeft(2, '0')}/${picked.year.toString()}';
-  //     controller.ctrBirthdate.value.text = formattedDate;
-  //   }
-  // }
 }
