@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/src/controller/controller_list_estadio.dart';
 import 'package:flutter_application_1/src/controller/controller_list_jugador.dart';
+import 'package:flutter_application_1/src/models/estadio_modelo.dart';
 import 'package:flutter_application_1/src/models/jugador_modelo.dart';
 import 'package:flutter_application_1/src/pages/detalles_page.dart';
+import 'package:flutter_application_1/src/pages/detalles_page_estadio.dart';
 import 'package:flutter_application_1/src/pages/estadio_lista_page.dart';
 import 'package:flutter_application_1/src/pages/estadio_page.dart';
 import 'package:flutter_application_1/src/pages/home_page.dart';
@@ -42,13 +44,13 @@ class MyApp extends StatelessWidget {
             return DetallesPage(jugador: jugador!);
           },
         ),
-        // GetPage(
-        //   name: '/detallesEstadio',
-        //   page: () {
-        //     final estadio = Get.arguments as EstadioModelo?;
-        //     return DetallesPage(estadio: estadio!);
-        //   },
-        // ),
+        GetPage(
+          name: '/detallesEstadio',
+          page: () {
+            final estadio = Get.arguments as EstadioModelo?;
+            return DetallesPageEstadio(estadio: estadio!);
+          },
+        ),
         GetPage(name: '/jugador', page: () => const JugadorPage()),
         GetPage(name: '/estadio', page: () => const EstadioPage()),
       ],

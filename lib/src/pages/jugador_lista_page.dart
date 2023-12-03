@@ -3,9 +3,6 @@ import 'package:flutter_application_1/src/controller/controller_list_jugador.dar
 import 'package:flutter_application_1/src/custom_widget/drawer_item.dart';
 import 'package:flutter_application_1/src/custom_widget/item_jugador.dart';
 import 'package:get/get.dart';
-// import 'package:worldps/src/controller/controller_list_jugador.dart';
-// import 'package:worldps/src/custom_widget/drawer_item.dart';
-// import 'package:worldps/src/custom_widget/item_jugador.dart';
 
 class JugadorListaPage extends StatelessWidget {
   JugadorListaPage({super.key});

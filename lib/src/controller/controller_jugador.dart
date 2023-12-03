@@ -7,19 +7,16 @@ import 'package:get/get.dart';
 class ControllerPlayer extends GetxController {
   String? _id = '';
   var playerName = ''.obs;
-  //var playerBirthdate = ''.obs;
   var playerNationality = ''.obs;
   var playerEmail = ''.obs;
   var playerStatus = true.obs;
   var playerLastTeam = ''.obs;
   Rx<DateTime> playerBirthdate = Rx<DateTime>(DateTime(2005));
   bool fName = false;
-  //bool fBirthdate = false;
   bool fNationality = false;
   bool fEmail = false;
   bool fLastTeam = false;
   RxnString errorName = RxnString(null);
-  RxnString errorBirthdate = RxnString(null);
   RxBool isButtonEnabledRx = false.obs;
   RxnString errorNationality = RxnString(null);
   RxnString errorEmail = RxnString(null);
@@ -30,21 +27,18 @@ class ControllerPlayer extends GetxController {
   PlayersService? service;
   ControllerListJugador ctrlst = Get.find();
   var ctrName = TextEditingController().obs;
-  var ctrBirthdate = TextEditingController().obs;
   var ctrNationality = TextEditingController().obs;
   var ctrEmail = TextEditingController().obs;
   var ctrLastTeam = TextEditingController().obs;
 
-  void setAttributes(String id, String nombre, DateTime fechaNacimiento,
-      String nacionalidad, String email, bool status, String ultimoEquipo) {
+  void setAttributes(String id, String nombre, String nacionalidad,
+      String email, bool status, String ultimoEquipo) {
     _id = id;
     ctrName.value.text = nombre;
-    ctrBirthdate.value.text = fechaNacimiento.toString();
     ctrNationality.value.text = nacionalidad;
     ctrEmail.value.text = email;
     ctrLastTeam.value.text = ultimoEquipo;
     playerName.value = nombre;
-    playerBirthdate.value = fechaNacimiento;
     playerNationality.value = nacionalidad;
     playerEmail.value = email;
     playerStatus.value = status;
@@ -152,11 +146,6 @@ class ControllerPlayer extends GetxController {
     playerName.value = val;
   }
 
-  void birthdateChanged(DateTime val) {
-    playerBirthdate.value = val;
-    //validarBirthdate(val); // Validar fecha de nacimiento
-  }
-
   void nationalityChanged(String val) {
     playerNationality.value = val;
   }
@@ -183,12 +172,9 @@ class ControllerPlayer extends GetxController {
 
       if (isValid) {
         String? mensaje = 'Se agregó un nuevo jugador';
-        String formattedDate =
-            '${playerBirthdate.value.day.toString().padLeft(2, '0')}/${playerBirthdate.value.month.toString().padLeft(2, '0')}/${playerBirthdate.value.year.toString()}';
         if (_id == '') {
           JugadorModelo jugador = JugadorModelo(
             nombre: playerName.value,
-            fechaNacimiento: formattedDate,
             nacionalidad: playerNationality.value,
             email: playerEmail.value,
             status: playerStatus.value,
@@ -200,7 +186,6 @@ class ControllerPlayer extends GetxController {
           JugadorModelo jugador = JugadorModelo(
             id: _id,
             nombre: playerName.value,
-            fechaNacimiento: formattedDate,
             nacionalidad: playerNationality.value,
             email: playerEmail.value,
             status: playerStatus.value,
@@ -213,7 +198,6 @@ class ControllerPlayer extends GetxController {
 
         if (_id!.isNotEmpty) {
           ctrName.value.text = '';
-          ctrBirthdate.value.text = '';
           ctrNationality.value.text = '';
           ctrEmail.value.text = '';
           playerStatus.value = true;

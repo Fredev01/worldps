@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/src/models/jugador_modelo.dart';
+import 'package:flutter_application_1/src/models/estadio_modelo.dart';
 
-class DetallesPage extends StatelessWidget {
-  final JugadorModelo jugador;
+class DetallesPageEstadio extends StatelessWidget {
+  final EstadioModelo estadio;
 
-  const DetallesPage({Key? key, required this.jugador}) : super(key: key);
+  const DetallesPageEstadio({Key? key, required this.estadio})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Detalles del jugador',
+          'Detalles del estadio',
         ),
         backgroundColor: Colors.green,
         centerTitle: true,
@@ -22,19 +23,21 @@ class DetallesPage extends StatelessWidget {
 
   Widget cuerpo(BuildContext context) {
     List<String> nombres = [
-      'Nombre',
-      'Nacionalidad',
-      'Email',
-      'Status',
-      'Ultimo Equipo',
+      'Nombre del estadio',
+      // 'Fecha de fundacion',
+      'Ubicacion',
+      'Dueño',
+      'Capacidad',
+      'Estado',
     ];
 
     List<String> valores = [
-      jugador.nombre,
-      jugador.nacionalidad,
-      jugador.email,
-      jugador.status ? 'Activo' : 'Retirado',
-      jugador.ultimoEquipo,
+      estadio.nombre,
+      // estadio.fechaFundacion,
+      estadio.ubicacion,
+      estadio.propietario,
+      estadio.capacidad.toString(),
+      estadio.disponible ? 'Mantenimiento' : 'Activo',
     ];
 
     List<Widget> formularios = [];

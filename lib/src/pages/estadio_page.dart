@@ -9,6 +9,16 @@ class EstadioPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var fx = Get.put(ControllerEstadio());
+    if (Get.arguments != null) {
+      fx.setAttributes(
+          Get.arguments['id'],
+          Get.arguments['nombre'],
+          Get.arguments['ubicacion'],
+          Get.arguments['propietario'],
+          Get.arguments['capacidad'],
+          Get.arguments['disponible']);
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Registrar Estadio'),
@@ -29,28 +39,28 @@ class EstadioPage extends StatelessWidget {
                 );
               }),
               const SizedBox(height: 10),
-              Obx(() {
-                return TextFormField(
-                  readOnly: true,
-                  controller: fx.ctrDate.value,
-                  onTap: () {
-                    _selectDate(context, fx);
-                    FocusScope.of(context).requestFocus(FocusNode());
-                  },
-                  decoration: InputDecoration(
-                    labelText: 'Fecha de construcción',
-                    errorText: fx.errorDate.value,
-                    filled: true,
-                    prefixIcon: const Icon(Icons.calendar_today),
-                    enabledBorder: const OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                    ),
-                    focusedBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.green),
-                    ),
-                  ),
-                );
-              }),
+              // Obx(() {
+              //   return TextFormField(
+              //     readOnly: true,
+              //     controller: fx.ctrDate.value,
+              //     onTap: () {
+              //       _selectDate(context, fx);
+              //       FocusScope.of(context).requestFocus(FocusNode());
+              //     },
+              //     decoration: InputDecoration(
+              //       labelText: 'Fecha de construcción',
+              //       errorText: fx.errorDate.value,
+              //       filled: true,
+              //       prefixIcon: const Icon(Icons.calendar_today),
+              //       enabledBorder: const OutlineInputBorder(
+              //         borderSide: BorderSide.none,
+              //       ),
+              //       focusedBorder: const OutlineInputBorder(
+              //         borderSide: BorderSide(color: Colors.green),
+              //       ),
+              //     ),
+              //   );
+              // }),
               const SizedBox(height: 10),
               Obx(() {
                 return TextFormField(
@@ -104,42 +114,4 @@ class EstadioPage extends StatelessWidget {
       ),
     );
   }
-
-  Future<void> _selectDate(
-      BuildContext context, ControllerEstadio controller) async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: controller.estadioDate.value,
-      firstDate: DateTime(1854),
-      lastDate: DateTime.now(),
-    );
-
-    if (picked != null && picked != controller.estadioDate.value) {
-      controller.estadioDate(picked);
-      final formattedDate =
-          '${picked.day.toString().padLeft(2, '0')}/${picked.month.toString().padLeft(2, '0')}/${picked.year.toString()}';
-      controller.ctrDate.value.text = formattedDate;
-    }
-  }
 }
-// @override
-//   _EstadioPageState createState() => _EstadioPageState();
-// }
-
-// class _EstadioPageState extends State<EstadioPage> {
-//   DateTime? _selectedDate;
-
-//   Future<void> _selectDate(BuildContext context) async {
-//     DateTime? pickedDate = await showDatePicker(
-//       context: context,
-//       initialDate: _selectedDate ?? DateTime.now(),
-//       firstDate: DateTime(1854),
-//       lastDate: DateTime.now(),
-//     );
-
-//     if (pickedDate != null && pickedDate != _selectedDate) {
-//       setState(() {
-//         _selectedDate = pickedDate;
-//       });
-//     }
-//   }

@@ -42,7 +42,6 @@ class ItemJugador extends StatelessWidget {
                   Get.toNamed('jugador', arguments: {
                     'id': jugador.id,
                     'nombre': jugador.nombre,
-                    'fechaNacimiento ': jugador.fechaNacimiento,
                     'nacionalidad': jugador.nacionalidad,
                     'email': jugador.email,
                     'status': jugador.status,

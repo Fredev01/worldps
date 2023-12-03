@@ -2,7 +2,7 @@ class EstadioModelo {
   EstadioModelo({
     this.id,
     required this.nombre,
-    required this.fechaFundacion,
+    // required this.fechaFundacion,
     required this.ubicacion,
     required this.propietario,
     required this.capacidad,
@@ -11,7 +11,7 @@ class EstadioModelo {
 
   String? id;
   String nombre;
-  String fechaFundacion;
+  // String fechaFundacion;
   String ubicacion;
   String propietario;
   int capacidad;
@@ -20,7 +20,7 @@ class EstadioModelo {
   factory EstadioModelo.fromJson(Map<String, dynamic> json) => EstadioModelo(
         id: json["id"],
         nombre: json["nombre"],
-        fechaFundacion: json["fecha_fundacion"],
+        // fechaFundacion: json["fecha_fundacion"],
         ubicacion: json["ubicacion"],
         propietario: json["propietario"],
         capacidad: json["capacidad"],
@@ -29,7 +29,7 @@ class EstadioModelo {
 
   Map<String, dynamic> toJson() => {
         "nombre": nombre,
-        "fecha_fundacion": fechaFundacion,
+        // "fecha_fundacion": fechaFundacion,
         "ubicacion": ubicacion,
         "propietario": propietario,
         "capacidad": capacidad,
