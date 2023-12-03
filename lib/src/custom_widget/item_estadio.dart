@@ -15,8 +15,8 @@ class ItemEstadio extends StatelessWidget {
   Widget build(BuildContext context) {
     final ControllerListEstadio ctrEstadio = Get.find();
 
-    Color color = estadio.disponible ? Colors.white : Colors.grey;
-    IconData icon = estadio.disponible ? Icons.check : Icons.cancel;
+    Color color = estadio.disponible ? Colors.grey : Colors.white;
+    IconData icon = estadio.disponible ? Icons.cancel : Icons.check;
 
     return Card(
       color: color,
@@ -39,10 +39,10 @@ class ItemEstadio extends StatelessWidget {
                 {ctrEstadio.delete(estadio)}
               else
                 {
-                  Get.toNamed('estadio', arguments: {
+                  Get.toNamed('Estadio', arguments: {
                     'id': estadio.id,
                     'nombre': estadio.nombre,
-                    'fechaFundacion ': estadio.fechaFundacion,
+                    // 'fechaFundacion ': estadio.fechaFundacion,
                     'ubicacion': estadio.ubicacion,
                     'propietario': estadio.propietario,
                     'capacidad': estadio.capacidad,

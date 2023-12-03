@@ -22,7 +22,6 @@ class JugadorPage extends StatelessWidget {
         fx.setAttributes(
             Get.arguments['id'],
             Get.arguments['nombre'],
-            fechaNacimiento,
             Get.arguments['nacionalidad'],
             Get.arguments['email'],
             Get.arguments['status'],
@@ -47,26 +46,26 @@ class JugadorPage extends StatelessWidget {
                       errorText: fx.errorName.value),
                 );
               }),
-              Obx(() {
-                return TextFormField(
-                  controller: fx.ctrBirthdate.value,
-                  onTap: () {
-                    _selectDate(context, fx);
-                    FocusScope.of(context).requestFocus(FocusNode());
-                  },
-                  decoration: InputDecoration(
-                    labelText: 'Fecha de nacimiento',
-                    errorText: fx.errorBirthdate.value,
-                    suffixIcon: IconButton(
-                      onPressed: () {
-                        _selectDate(context, fx);
-                        FocusScope.of(context).requestFocus(FocusNode());
-                      },
-                      icon: const Icon(Icons.calendar_today),
-                    ),
-                  ),
-                );
-              }),
+              // Obx(() {
+              //   return TextFormField(
+              //     controller: fx.ctrBirthdate.value,
+              //     onTap: () {
+              //       _selectDate(context, fx);
+              //       FocusScope.of(context).requestFocus(FocusNode());
+              //     },
+              //     decoration: InputDecoration(
+              //       labelText: 'Fecha de nacimiento',
+              //       errorText: fx.errorBirthdate.value,
+              //       suffixIcon: IconButton(
+              //         onPressed: () {
+              //           _selectDate(context, fx);
+              //           FocusScope.of(context).requestFocus(FocusNode());
+              //         },
+              //         icon: const Icon(Icons.calendar_today),
+              //       ),
+              //     ),
+              //   );
+              // }),
               Obx(() {
                 return TextFormField(
                   controller: fx.ctrNationality.value,
@@ -115,20 +114,20 @@ class JugadorPage extends StatelessWidget {
     );
   }
 
-  Future<void> _selectDate(
-      BuildContext context, ControllerPlayer controller) async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: controller.playerBirthdate.value,
-      firstDate: DateTime(1950),
-      lastDate: DateTime(2005),
-    );
+  // Future<void> _selectDate(
+  //     BuildContext context, ControllerPlayer controller) async {
+  //   final DateTime? picked = await showDatePicker(
+  //     context: context,
+  //     initialDate: controller.playerBirthdate.value,
+  //     firstDate: DateTime(1950),
+  //     lastDate: DateTime(2005),
+  //   );
 
-    if (picked != null && picked != controller.playerBirthdate.value) {
-      controller.birthdateChanged(picked);
-      final formattedDate =
-          '${picked.day.toString().padLeft(2, '0')}/${picked.month.toString().padLeft(2, '0')}/${picked.year.toString()}';
-      controller.ctrBirthdate.value.text = formattedDate;
-    }
-  }
+  //   if (picked != null && picked != controller.playerBirthdate.value) {
+  //     controller.birthdateChanged(picked);
+  //     final formattedDate =
+  //         '${picked.day.toString().padLeft(2, '0')}/${picked.month.toString().padLeft(2, '0')}/${picked.year.toString()}';
+  //     controller.ctrBirthdate.value.text = formattedDate;
+  //   }
+  // }
 }
