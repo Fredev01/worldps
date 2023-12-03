@@ -73,7 +73,6 @@ class ControllerPlayer extends GetxController {
       fName = true;
       errorName.value = null;
       submitFunc.value = submitFunction();
-      print(submitFunc.value);
     }
     updateButtonState();
   }
@@ -166,6 +165,14 @@ class ControllerPlayer extends GetxController {
     isButtonEnabledRx.value = fName && fNationality && fEmail && fLastTeam;
   }
 
+  void clearFormData() {
+    ctrName.value.text = '';
+    ctrNationality.value.text = '';
+    ctrEmail.value.text = '';
+    ctrLastTeam.value.text = '';
+    playerStatus.value = true;
+  }
+
   Future<bool> Function() submitFunction() {
     return () async {
       bool isValid = fName && fNationality && fEmail && fLastTeam;
@@ -182,6 +189,7 @@ class ControllerPlayer extends GetxController {
           );
           //service?.createPlayer(jugador);
           _id = await ctrlst.agregar(jugador);
+          Get.offNamed('/Jugadores');
         } else {
           JugadorModelo jugador = JugadorModelo(
             id: _id,
@@ -193,7 +201,7 @@ class ControllerPlayer extends GetxController {
           );
           ctrlst.actualizar(jugador);
           mensaje = 'Se actualizó el jugador';
-          Get.offNamed('/listaJugador');
+          Get.offNamed('/Jugadores');
         }
 
         if (_id!.isNotEmpty) {

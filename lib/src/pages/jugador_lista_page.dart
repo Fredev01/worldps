@@ -6,12 +6,12 @@ import 'package:get/get.dart';
 
 class JugadorListaPage extends StatelessWidget {
   JugadorListaPage({super.key});
-  final ControllerListJugador ctr = Get.put(ControllerListJugador());
+  final ControllerListJugador ctr = Get.find();
 
   @override
   Widget build(BuildContext context) {
     // Cargar la lista de jugadores al inicio
-    ctr.loadPlayers(); // <-- Cambiado de loadJugadores a loadPlayers
+    //ctr.loadPlayers(); // <-- Cambiado de loadJugadores a loadPlayers
 
     return Scaffold(
       appBar: AppBar(

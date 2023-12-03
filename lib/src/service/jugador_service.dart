@@ -40,24 +40,9 @@ class PlayersService extends ChangeNotifier {
     return resp.statusCode == 200;
   }
 
-  Future<void> updatePlayer(JugadorModelo player) async {
-    try {
-      final url = Uri.https(_baseUrl, 'jugadores/${player.id}.json');
-      final resp = await http.put(url, body: json.encode(player));
-
-      if (resp.statusCode == 200) {
-        // Actualizar la lista de jugadores después de la operación exitosa
-        int index = players.indexWhere((element) => element.id == player.id);
-        players[index] = player;
-
-        // Notificar a los oyentes del cambio en la lista
-        notifyListeners();
-      } else {
-        throw Exception('Error al actualizar el jugador en la base de datos');
-      }
-    } catch (e) {
-      print('Error en updatePlayer: $e');
-      throw e; // Re-lanza el error para que pueda ser manejado en el lugar adecuado
-    }
+  Future<String?> updatePlayer(JugadorModelo player) async {
+    final url = Uri.https(_baseUrl, 'jugadores/${player.id}.json');
+    await http.put(url, body: json.encode(player));
+    return player.id;
   }
 }

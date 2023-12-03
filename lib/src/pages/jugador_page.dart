@@ -79,13 +79,8 @@ class JugadorPage extends StatelessWidget {
               }),
               Obx(() {
                 return ElevatedButton.icon(
-                  onPressed: fx.isButtonEnabledRx.value
-                      ? () {
-                          fx.submitFunc.value!();
-                          // Después de guardar, regresa a la página de lista
-                          Get.back();
-                        }
-                      : null,
+                  onPressed:
+                      fx.isButtonEnabledRx.value ? fx.submitFunc.value : null,
                   icon: const Icon(Icons.save),
                   label: const Text('Guardar'),
                 );
