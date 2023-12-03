@@ -10,6 +10,9 @@ class JugadorListaPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Cargar la lista de jugadores al inicio
+    ctr.loadPlayers(); // <-- Cambiado de loadJugadores a loadPlayers
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Lista de jugadores'),
@@ -22,7 +25,7 @@ class JugadorListaPage extends StatelessWidget {
             var jugador = ctr.listaJugador[index];
             return GestureDetector(
               onTap: () {
-                // Mandar al direccion detalles :3
+                // Mandar al dirección detalles :3
                 Get.toNamed('/detalles', arguments: jugador);
               },
               child: ItemJugador(jugador: jugador),
