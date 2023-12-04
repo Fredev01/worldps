@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/src/custom_widget/drawer_item.dart';
 import 'package:flutter_application_1/src/models/jugador_modelo.dart';
 
 class DetallesPage extends StatelessWidget {
@@ -9,6 +10,7 @@ class DetallesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: buildCustomDrawerJuga(),
       appBar: AppBar(
         title: const Text(
           'Detalles del jugador',
