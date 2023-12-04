@@ -36,6 +36,44 @@ class DrawerItEstadio extends StatelessWidget {
   }
 }
 
+class DrawerDetEstadio extends StatelessWidget {
+  const DrawerDetEstadio({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          color: Colors.white, // Color de fondo blanco
+          child: ListTile(
+            title: const Text('Estadios'),
+            onTap: () => Get.offNamed('listaEstadio'),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class DrawerDetJugadores extends StatelessWidget {
+  const DrawerDetJugadores({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          color: Colors.white, // Color de fondo blanco
+          child: ListTile(
+            title: const Text('Jugadores'),
+            onTap: () => Get.offNamed('Jugadores'),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
 class BNavigator extends StatelessWidget {
   const BNavigator({Key? key}) : super(key: key);
 
@@ -164,6 +202,54 @@ Widget buildCustomDrawer() {
             ),
           ),
           const DrawerItEstadio(),
+        ],
+      ),
+    ),
+  );
+}
+
+Widget buildCustomDrawerEst() {
+  return Drawer(
+    child: Container(
+      color: Colors.green,
+      child: Column(
+        children: [
+          Container(
+            width: 200,
+            height: 200,
+            margin: const EdgeInsets.only(top: 20, bottom: 20),
+            child: Column(
+              children: [
+                Image.asset('assets/images/WorldPSLogo.png', height: 150),
+                Image.asset('assets/images/TypoWorldPS.png', height: 50),
+              ],
+            ),
+          ),
+          const DrawerDetEstadio(),
+        ],
+      ),
+    ),
+  );
+}
+
+Widget buildCustomDrawerJuga() {
+  return Drawer(
+    child: Container(
+      color: Colors.green,
+      child: Column(
+        children: [
+          Container(
+            width: 200,
+            height: 200,
+            margin: const EdgeInsets.only(top: 20, bottom: 20),
+            child: Column(
+              children: [
+                Image.asset('assets/images/WorldPSLogo.png', height: 150),
+                Image.asset('assets/images/TypoWorldPS.png', height: 50),
+              ],
+            ),
+          ),
+          const DrawerDetJugadores(),
         ],
       ),
     ),
