@@ -9,10 +9,10 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: buildCustomDrawer(),
       appBar: AppBar(
         title: const Text("Pagina Principal"),
       ),
-      bottomNavigationBar: const BNavigator(),
       // floatingActionButton: const AddEstadio(),
     );
   }

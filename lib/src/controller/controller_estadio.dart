@@ -15,13 +15,11 @@ class ControllerEstadio extends GetxController {
   // Rx<DateTime> estadioDate = Rx<DateTime>(DateTime(1980));
 
   bool fName = false;
-  // bool fDate = false;
   bool fPlace = false;
   bool fOwner = false;
   bool fCapacity = false;
 
   RxnString errorName = RxnString(null);
-  // RxnString errorDate = RxnString(null);
   RxnString errorPlace = RxnString(null);
   RxnString errorOwner = RxnString(null);
   RxnString errorCapacity = RxnString(null);
@@ -33,7 +31,6 @@ class ControllerEstadio extends GetxController {
   ControllerListEstadio ctrlst = Get.find();
 
   var ctrName = TextEditingController().obs;
-  // var ctrDate = TextEditingController().obs;
   var ctrPlace = TextEditingController().obs;
   var ctrOwner = TextEditingController().obs;
   var ctrCapacity = TextEditingController().obs;
@@ -68,11 +65,6 @@ class ControllerEstadio extends GetxController {
       validarName,
       time: const Duration(microseconds: 500),
     );
-    // debounce<DateTime>(
-    //   estadioDate,
-    //   validarDate,
-    //   time: const Duration(microseconds: 500),
-    // );
     debounce<String>(
       estadioPlace,
       validarPlace,
@@ -103,22 +95,6 @@ class ControllerEstadio extends GetxController {
     }
     updateButtonState();
   }
-
-  // void validarDate(DateTime val) {
-  //   errorDate.value = null;
-  //   submitFunc.value = null;
-  //   final currentDate = DateTime.now();
-  //   if (val.isAfter(currentDate)) {
-  //     errorDate.value = 'La fecha de fundación no puede ser en el futuro';
-  //     fDate = false;
-  //   } else {
-  //     // Validación exitosa
-  //     submitFunc.value = submitFunction();
-  //     fDate = true;
-  //     errorDate.value = null;
-  //   }
-  //   updateButtonState();
-  // }
 
   void validarCapacity(String val) {
     errorCapacity.value = null;
@@ -192,8 +168,6 @@ class ControllerEstadio extends GetxController {
       bool isValid = fName && fPlace && fOwner && fCapacity;
       if (isValid) {
         String? mensaje = 'se agregó un nuevo estadio';
-        // String formattedDate =
-        //     '${estadioDate.value.day.toString().padLeft(2, '0')}/${estadioDate.value.month.toString().padLeft(2, '0')}/${estadioDate.value.year.toString()}';
         if (_id == '') {
           EstadioModelo estadio = EstadioModelo(
             nombre: estadioName.value,
@@ -207,7 +181,6 @@ class ControllerEstadio extends GetxController {
           EstadioModelo estadio = EstadioModelo(
             id: _id,
             nombre: estadioName.value,
-            // fechaFundacion: formattedDate,
             ubicacion: estadioPlace.value,
             propietario: estadioOwner.value,
             capacidad: int.tryParse(estadioCapacity.value) ?? 0,
@@ -219,7 +192,6 @@ class ControllerEstadio extends GetxController {
         }
         if (_id!.isNotEmpty) {
           ctrName.value.text = '';
-          // ctrDate.value.text = '';
           ctrPlace.value.text = '';
           ctrOwner.value.text = '';
           ctrCapacity.value.text = '';

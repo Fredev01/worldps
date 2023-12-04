@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/src/controller/controller_estadio.dart';
+import 'package:flutter_application_1/src/custom_widget/drawer_item.dart';
 import 'package:get/get.dart';
 // import 'package:worldps/scr/custom_widget/drawer_item.dart';
 
@@ -20,6 +21,7 @@ class EstadioPage extends StatelessWidget {
     }
 
     return Scaffold(
+      drawer: buildCustomDrawer(),
       appBar: AppBar(
         title: const Text('Registrar Estadio'),
       ),
@@ -38,29 +40,6 @@ class EstadioPage extends StatelessWidget {
                       errorText: fx.errorName.value),
                 );
               }),
-              const SizedBox(height: 10),
-              // Obx(() {
-              //   return TextFormField(
-              //     readOnly: true,
-              //     controller: fx.ctrDate.value,
-              //     onTap: () {
-              //       _selectDate(context, fx);
-              //       FocusScope.of(context).requestFocus(FocusNode());
-              //     },
-              //     decoration: InputDecoration(
-              //       labelText: 'Fecha de construcción',
-              //       errorText: fx.errorDate.value,
-              //       filled: true,
-              //       prefixIcon: const Icon(Icons.calendar_today),
-              //       enabledBorder: const OutlineInputBorder(
-              //         borderSide: BorderSide.none,
-              //       ),
-              //       focusedBorder: const OutlineInputBorder(
-              //         borderSide: BorderSide(color: Colors.green),
-              //       ),
-              //     ),
-              //   );
-              // }),
               const SizedBox(height: 10),
               Obx(() {
                 return TextFormField(
