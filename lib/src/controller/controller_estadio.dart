@@ -85,7 +85,8 @@ class ControllerEstadio extends GetxController {
   void validarName(String val) {
     errorName.value = null;
     submitFunc.value = null;
-    if (val.length > 4) {
+    val = val.trim();
+    if (val.length > 4 && val.isNotEmpty) {
       errorName.value = null;
       submitFunc.value = submitFunction();
       fName = true;

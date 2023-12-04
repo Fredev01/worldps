@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/src/controller/controller_jugador.dart';
+import 'package:flutter_application_1/src/custom_widget/drawer_item.dart';
 import 'package:get/get.dart';
 
 class JugadorPage extends StatelessWidget {
@@ -21,6 +22,7 @@ class JugadorPage extends StatelessWidget {
     }
 
     return Scaffold(
+      drawer: buildCustomDrawer(),
       appBar: AppBar(
         title: const Text('Nuevo jugador'),
       ),

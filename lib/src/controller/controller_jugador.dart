@@ -62,8 +62,10 @@ class ControllerPlayer extends GetxController {
   void validarName(String val) {
     errorName.value = null;
     submitFunc.value = null;
-    if (val.length <= 15) {
-      errorName.value = 'El nombre debe tener al menos 15 caracteres';
+    val = val.trim();
+    // Verificar que la longitud sea mayor a 15 caracteres
+    if (val.length <= 12 && val.isEmpty) {
+      errorName.value = 'El nombre debe tener al menos 12 caracteres';
       fName = false;
     } else if (RegExp(r'[0-9]').hasMatch(val)) {
       errorName.value = 'El nombre no puede contener números';
@@ -80,8 +82,9 @@ class ControllerPlayer extends GetxController {
   void validarNationality(String val) {
     errorNationality.value = null;
     submitFunc.value = null;
+    val = val.trim();
     // Verificar que la longitud sea mayor a 15 caracteres
-    if (val.length > 4) {
+    if (val.length > 4 && val.isNotEmpty) {
       // Verificar si contiene números usando expresiones regulares
       if (!RegExp(r'[0-9]').hasMatch(val)) {
         // El nombre no contiene números y tiene la longitud correcta
@@ -129,7 +132,8 @@ class ControllerPlayer extends GetxController {
     errorLastTeam.value = null;
     submitFunc.value = null;
     // Verificar que la longitud sea mayor a 15 caracteres
-    if (val.length > 2) {
+    val = val.trim();
+    if (val.length > 2 && val.isNotEmpty) {
       submitFunc.value = submitFunction();
       fLastTeam = true;
       errorLastTeam.value = null;
