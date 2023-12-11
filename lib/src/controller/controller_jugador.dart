@@ -64,7 +64,7 @@ class ControllerPlayer extends GetxController {
     submitFunc.value = null;
     val = val.trim();
     // Verificar que la longitud sea mayor a 15 caracteres
-    if (val.length <= 12 && val.isEmpty) {
+    if (val.length <= 12 || val.isEmpty) {
       errorName.value = 'El nombre debe tener al menos 12 caracteres';
       fName = false;
     } else if (RegExp(r'[0-9]').hasMatch(val)) {
